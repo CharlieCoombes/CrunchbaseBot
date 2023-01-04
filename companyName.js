@@ -8,7 +8,7 @@ const url = "https://www.crunchbase.com/discover/funding_rounds/d7cab71c9a3e0cd0
 
 //
 let browser;
-(async () => {
+module.exports = () => (async () => {
     browser = await puppeteer.launch({
         args: [
           '--no-sandbox',
@@ -22,30 +22,9 @@ let browser;
     const text = async (...args) =>
         (await $(...args)).evaluate(el => el.textContent.trim());
     await page.goto(url, {waitUntil: "domcontentloaded"}, {timeout: 0});
-    const info = await text(".non-select-column .ng-star-inserted .component--field-formatter ");
-
-    console.log(info);
-
-    // Async function that creates the Tweet
-    const tweet = async () => {
-      try {
-          await rwClient.v2.tweet(
-              //
-              "New funding round detected!" + '\n' + '\n' +
-      
-              "Company Name: " + "$" + await info.companyName() + '\n' +
-              "Funding Round: " +  await info.round() + '\n' +
-              "Amount Raised: " + await info.amountRaised() + '\n'
-          );
-
-      } catch (error) {
-          console.error(error);
-      }
-  }
+    const info = {
+        companyName: await text(".non-select-column .ng-star-inserted .component--field-formatter "),
+    }
 
 
-      tweet();
-      //console.log("Tweet executed");
-
-  job.start();
 })()
