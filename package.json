@@ -1,0 +1,23 @@
+{
+  "name": "crunchbasebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.1",
+    "cors": "^2.8.5",
+    "cron": "^2.1.0",
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20",
+    "puppeteer": "^19.4.1",
+    "twitter-api-v2": "^1.12.10"
+  }
+}
